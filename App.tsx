@@ -1,6 +1,11 @@
+import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, Platform  } from 'react-native';
+import { Button, StyleSheet, Text, View  } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import { DateBirth } from './src/utils/functions';
+import { aniversariantes } from './src/utils/database'
+import { INiverProps } from './src/utils/interface'
+import * as Linking from 'expo-linking';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -11,28 +16,41 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
-  // async function handleCallNotification() {
-  //   const {status} = await Notifications.getPermissionsAsync();
-  //   if (status !== 'granted'){
-  //     alert('Você não tem permissão para receber notificações.')
-  //     return;
-  //   }
-  //   let token = (await Notifications.getExpoPushTokenAsync()).data
-  //   console.log(token)
-  // }
+  const [niverToday, setNiverToday] = useState<INiverProps>()
 
- const handleCallNotification = () => Notifications.scheduleNotificationAsync({
+  function SendWhatsApp(phoneNumber: string) {
+    Linking.openURL(`https://wa.me/55${phoneNumber}`); 
+  }
+
+  const handleCallNotification = (niver: INiverProps) => Notifications.scheduleNotificationAsync({
     content: {
       title: 'BirthDay',
-      body: "Today is my Day!",
+      body: `Hoje (${niver.datanas}) é Aniversário de ${niver.nome}.`,
     },
     trigger: null,
   });
 
+  useEffect(() => {
+    aniversariantes.map(niver => {
+      if (DateBirth(niver.datanas)) {
+        setNiverToday(niver)
+        handleCallNotification(niver)
+      }
+    })
+  },[])
+
   return (
     <View style={styles.container}>
       <Text>Notify BirthDay</Text>
-      <Button title='Notify Me' onPress={handleCallNotification} />
+        {
+          niverToday ? 
+          <View>
+            <Text>Hoje é aniversário de {niverToday.nome}</Text> 
+            <Button title='Enviar Mensagem Whatsapp' onPress={() => SendWhatsApp(niverToday.telefone)} />
+          </View>
+        :
+        <Text></Text>
+        }
       <StatusBar style="auto" />
     </View>
   );
