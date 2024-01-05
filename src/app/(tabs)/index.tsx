@@ -7,7 +7,9 @@ import { aniversariantes } from '../../utils/database'
 import { INiverProps } from '../../utils/interface'
 import * as Linking from 'expo-linking';
 
-import { styles } from './styles'
+import { styles } from '../../style/styles'
+import { Image } from 'expo-image';
+import Header from '../../component/header';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -52,8 +54,10 @@ export default function Home() {
   },[])
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Header />
+            
+      <View style={styles.container}>
           {
             niverToday ? 
             <View>

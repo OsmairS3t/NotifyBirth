@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "NotifyBirth",
+    "scheme": "your-app-scheme",
     "slug": "NotifyBirth",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -37,7 +38,8 @@
             "./assets/notifysound2.wav"
           ]
         }
-      ]
+      ],
+      "expo-router"
     ]
   }
 }
