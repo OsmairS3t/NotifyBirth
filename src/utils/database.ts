@@ -6,15 +6,9 @@ export const aniversariantes = [
    telefone: "62 9329-7875"
   },
   {
-   equipe: "Farol",
-   nome: "Fulando de Tal",
-   datanas: "3/1",
-   telefone: "62 9329-7875"
-  },
-  {
    equipe: "Célula",
    nome: "Aline Araujo ",
-   datanas: "20/9",
+   datanas: "20/09",
    telefone: "62"
   },
   {
@@ -32,7 +26,7 @@ export const aniversariantes = [
   {
    equipe: "Célula",
    nome: "Cláudia ",
-   datanas: "22/7",
+   datanas: "22/07",
    telefone: "62"
   },
   {
@@ -44,25 +38,25 @@ export const aniversariantes = [
   {
    equipe: "Célula",
    nome: "Divina",
-   datanas: "24/8",
+   datanas: "24/08",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Eliabe",
-   datanas: "1/2",
+   datanas: "1/02",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Erisvaldo",
-   datanas: "19/2",
+   datanas: "19/02",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Fernanda",
-   datanas: "29/9",
+   datanas: "29/09",
    telefone: "62"
   },
   {
@@ -80,7 +74,7 @@ export const aniversariantes = [
   {
    equipe: "Célula",
    nome: "Gleyce ",
-   datanas: "19/7",
+   datanas: "19/07",
    telefone: "62"
   },
   {
@@ -92,19 +86,19 @@ export const aniversariantes = [
   {
    equipe: "Célula",
    nome: "Isabela ",
-   datanas: "17/1",
+   datanas: "17/01",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Italo",
-   datanas: "20/8",
+   datanas: "20/08",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Joao Vitor",
-   datanas: "13/6",
+   datanas: "13/06",
    telefone: "62"
   },
   {
@@ -116,7 +110,7 @@ export const aniversariantes = [
   {
    equipe: "Farol",
    nome: "Kamila",
-   datanas: "28/9",
+   datanas: "28/09",
    telefone: "62"
   },
   {
@@ -134,43 +128,43 @@ export const aniversariantes = [
   {
    equipe: "Célula",
    nome: "Lucas",
-   datanas: "15/7",
+   datanas: "15/07",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Luís Gabriel ",
-   datanas: "17/7",
+   datanas: "17/07",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Marilene",
-   datanas: "3/3",
+   datanas: "3/03",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Mateus ",
-   datanas: "10/6",
+   datanas: "10/06",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Messias ",
-   datanas: "30/6",
+   datanas: "30/06",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Michael Sousa",
-   datanas: "20/6",
+   datanas: "20/06",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Michele ",
-   datanas: "9/2",
+   datanas: "9/02",
    telefone: "62"
   },
   {
@@ -182,61 +176,61 @@ export const aniversariantes = [
   {
    equipe: "Célula",
    nome: "Nycolle Eduarda",
-   datanas: "20/1",
+   datanas: "20/01",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Osmair ",
-   datanas: "20/7",
+   datanas: "20/07",
    telefone: "62 9402-9998"
   },
   {
    equipe: "Célula",
    nome: "Pedro ",
-   datanas: "28/5",
+   datanas: "28/05",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Samuel",
-   datanas: "23/5",
+   datanas: "23/05",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Taís",
-   datanas: "2/2",
+   datanas: "2/02",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Tamara",
-   datanas: "1/8",
+   datanas: "1/08",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Vanessa",
-   datanas: "6/7",
+   datanas: "6/07",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Vitor",
-   datanas: "9/7",
+   datanas: "9/07",
    telefone: "62"
   },
   {
    equipe: "Farol",
    nome: "Wanessa Araujo",
-   datanas: "13/2",
+   datanas: "13/02",
    telefone: "62"
   },
   {
    equipe: "Célula",
    nome: "Wesley ",
-   datanas: "15/8",
+   datanas: "15/08",
    telefone: "62"
   }
  ]

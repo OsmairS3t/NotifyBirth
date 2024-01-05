@@ -1,3 +1,6 @@
+import { aniversariantes } from "./database";
+import { INiverProps } from "./interface";
+
 export function DateBirth(dateBirth: string) {
   // dateBirth=d/Month
   const arrDate = dateBirth.split('/')
@@ -9,5 +12,22 @@ export function DateBirth(dateBirth: string) {
     } 
   }
   return false;
+}
+
+export function ZeroLeft(value: string, size: number) {
+  let add = ''
+  if (value.length < size) {
+    const rest = size - value.length
+    for (let i = 1; i <= rest; i++) {
+      add += '0'
+    }
+  }
+  return add + value
+}
+
+export function localiza(month: string) {
+  const myArray = aniversariantes
+  let newArray = myArray.filter(element => element.datanas.includes(`/${month}`))
+  console.log(newArray)
 }
 
