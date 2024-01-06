@@ -8,13 +8,15 @@ export default function AppLayout() {
         headerShown: false,
          headerStyle: {
           backgroundColor: '#000000',
+          justifyContent: 'center',
+          alignItems: 'center',
          },
         tabBarActiveTintColor: '#000000',
-        tabBarInactiveTintColor: '#d6a65d',
+        tabBarInactiveTintColor: '#525252',
         tabBarInactiveBackgroundColor: '#FF9900',
         tabBarActiveBackgroundColor: '#FF9900',
         tabBarStyle: {
-            height: 70,
+            height: 60,
             backgroundColor: '#FF9900',
         },
       }}
@@ -23,6 +25,7 @@ export default function AppLayout() {
         name="cadastro"
         options={{
           title: "",
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="app-registration" size={32} color={color} />
         )

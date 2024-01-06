@@ -9,7 +9,11 @@ export const styles = StyleSheet.create({
   },
   
   containerTab: {
+    height: 'auto',
     marginTop: 50,
+    marginLeft: 22,
+    marginRight: 22,
+    marginBottom: 130,
   },
 
   blockHeader: {
@@ -53,4 +57,45 @@ export const styles = StyleSheet.create({
   itemListTree: {
     width: 50,
   },
+
+  itemList: {
+    flexDirection: 'row',
+    gap: 6,
+    marginBottom: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: '#015663',
+  },
+
+  form: {
+    flex: 1,
+    marginTop: 10,
+    gap: 10,
+  },
+
+  input: {
+    borderWidth: 1,
+    height: 56,
+    width: '100%',
+    padding: 10,
+    fontSize: 20,
+    borderRadius: 6,
+    borderColor: '#d2d2d2',
+    backgroundColor: "#eaeaea",
+  },
+
+  bgnSubmit: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 56,
+    width: '100%',
+    borderRadius: 10,
+    backgroundColor: '#015663',
+  },
+
+  txtBtnSubmit: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontWeight: '600'
+  }
+
 });
