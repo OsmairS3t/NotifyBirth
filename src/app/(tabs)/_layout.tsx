@@ -27,7 +27,7 @@ export default function AppLayout() {
           title: "",
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ size, color }) => (
-            <MaterialIcons name="app-registration" size={32} color={color} />
+            <MaterialIcons name="description" size={32} color={color} />
         )
         }}
       />

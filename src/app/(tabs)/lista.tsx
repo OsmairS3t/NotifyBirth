@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { View, Text, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, FlatList, TouchableOpacity, Alert } from 'react-native';
 import Header from '../../component/header';
 import { Feather } from '@expo/vector-icons'
 
@@ -7,6 +7,7 @@ import { styles } from '../../style/styles';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import { INiverProps } from '../../utils/interface';
 import { useFocusEffect } from 'expo-router/src/useFocusEffect';
+import { Link } from 'expo-router';
 
 export default function Lista() {
   const { getItem, setItem } = useAsyncStorage('@notifybirth:contacts')
@@ -20,6 +21,18 @@ export default function Lista() {
     } catch (error) {
       console.log(error)      
     }
+  }
+
+  function remove(id: string) {
+    Alert.alert(
+      'Excluir',
+      'Tem certeza que deseja excluir?',  
+      [
+        {text: 'Sim', onPress: () => removeContact(id) },
+        {text: 'Não', onPress: () => {}, style: 'cancel'},
+      ],
+      { cancelable: false }
+    )
   }
 
   async function removeContact(id: string) {
@@ -44,11 +57,13 @@ export default function Lista() {
           data={contacts}
           renderItem={item => (
             <View style={styles.itemList}>
-              <Text style={styles.itemListOne}>{item.item.nome} ({item.item.grupo})</Text>
-              <Text style={styles.itemListTwo}>{item.item.datanas}</Text>
+              <Link href={"/contact/" + item.item.id} asChild>
+                <Text style={styles.itemListOne}>{item.item.nome} ({item.item.grupo})</Text>
+              </Link>
+                <Text style={styles.itemListTwo}>{item.item.datanas}</Text>
               <TouchableOpacity
                 style={styles.itemListTree}
-                onPress={() => {removeContact(item.item.id)}}
+                onPress={() => {remove(item.item.id)}}
               >
                 <Feather name='trash-2' size={24} />
               </TouchableOpacity>

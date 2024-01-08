@@ -1,63 +1,60 @@
-import React from 'react';
-import { View, Text, SafeAreaView, TextInput, Button, TouchableOpacity } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod'
-import uuid from 'react-native-uuid'
-import { useAsyncStorage } from '@react-native-async-storage/async-storage';
-import Toast from 'react-native-toast-message';
+import { Link, useGlobalSearchParams } from "expo-router";
+import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { Feather } from "@expo/vector-icons";
 
-import Header from '../../component/header';
-import { styles } from '../../style/styles';
-import { INiverProps } from '../../utils/interface';
+import { stylesLocal } from './styles';
+import { styles } from '../../style/styles'
+
+import { useEffect, useState } from "react";
+import { INiverProps } from "../../utils/interface";
+import Header from "../../component/header";
+import { Controller, useForm } from "react-hook-form";
+import { z } from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-  grupo: z.string().min(2, {message: 'É necessário informar pelo menos 2 caracteres'}),
-  nome: z.string().min(2, {message: 'É necessário informar pelo menos 2 caracteres'}),
+  grupo: z.string(),
+  nome: z.string(),
   datanas: z.string(),
-  telefone: z.string(),
+  telefone: z.string()
 })
 
-export default function Cadastro() {
-  const { getItem, setItem } = useAsyncStorage('@notifybirth:contacts')
-  const {control, handleSubmit, reset, formState: { errors }} = useForm<INiverProps>({
+export default function Update() {
+  const { getItem } = useAsyncStorage('@notifybirth:contacts')
+  const [contact, setContact] = useState<INiverProps>()
+  const [grupo, setGrupo] = useState()
+  const { id } = useGlobalSearchParams();
+  const { handleSubmit, control, formState: {errors} } = useForm<INiverProps>({
     resolver: zodResolver(schema)
   })
 
-  async function handleSubmitForm(data: INiverProps) {
-    const newData = {
-      id: uuid.v4(),
-      grupo: data.grupo,
-      nome: data.nome,
-      datanas: data.datanas,
-      telefone: data.telefone
-    }
-    try {
-      const response = await getItem()
-      const currentData = response ? JSON.parse(response) : []
-
-      const updatedData = [...currentData, newData]
-
-      await setItem(JSON.stringify(updatedData))
-      Toast.show({
-        type: "success",
-        text1: "Cadastro efetuado com sucesso"
-      })
-    } catch (error) {
-      Toast.show({
-        type: "error",
-        text1: "Ocorreu um erro ao tentar salvar.",
-        text2: `${error}`
-      })
-    }
-    reset()
+  async function loadContact(id: string) {
+    const response = await getItem()
+    const data:INiverProps[] = response ? JSON.parse(response) : []
+    const dataFound = data.find(d => d.id === id)
+    setContact(dataFound)
   }
+
+  function handleUpdateForm(data: INiverProps) {
+    console.log(data)
+  }
+
+  useEffect(() => {
+    loadContact(String(id))
+  }, [])
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header />
+
       <View style={styles.containerTab}>
-        <Text style={styles.titleInformation}>Incluir Aniversariantes:</Text>
+        <View style={stylesLocal.titleBack}> 
+          <Link href="/lista">
+            <Feather name="arrow-left" size={22} />
+          </Link>
+          <Text style={stylesLocal.titleText}>Cadastro de Aniversariante:</Text>
+        </View>
         <View style={styles.form}>
           <Controller
             control={control}
@@ -133,7 +130,7 @@ export default function Cadastro() {
           />
           {errors.telefone && <Text>This is required.</Text>}
 
-          <TouchableOpacity onPress={handleSubmit(handleSubmitForm)} style={styles.bgnSubmit}>
+          <TouchableOpacity onPress={handleSubmit(handleUpdateForm)} style={styles.bgnSubmit}>
             <Text style={styles.txtBtnSubmit}>Salvar</Text>
           </TouchableOpacity>
         </View>
