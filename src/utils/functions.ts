@@ -1,12 +1,10 @@
-import { aniversariantes } from "./database";
-import { INiverProps } from "./interface";
 
 export function DateBirth(dateBirth: string) {
   // dateBirth=d/Month
   const arrDate = dateBirth.split('/')
-  const dayToday = new Date().getDay()
+  const dayToday = new Date().getDate()
   const monthToday = new Date().getMonth()
-  if ((monthToday+1)=== Number(arrDate[1])) {
+  if ((monthToday+1) === Number(arrDate[1])) {
     if (dayToday === Number(arrDate[0])) {
       return true;
     } 
@@ -25,9 +23,4 @@ export function ZeroLeft(value: string, size: number) {
   return add + value
 }
 
-export function localiza(month: string) {
-  const myArray = aniversariantes
-  let newArray = myArray.filter(element => element.datanas.includes(`/${month}`))
-  console.log(newArray)
-}
 

@@ -46,6 +46,16 @@ export const styles = StyleSheet.create({
     gap: 4
   },
 
+  itemList: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 6,
+    padding: 10,
+    marginBottom: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: '#015663',
+  },
+
   itemListOne: {
     width: 250,
   },
@@ -56,14 +66,6 @@ export const styles = StyleSheet.create({
 
   itemListTree: {
     width: 50,
-  },
-
-  itemList: {
-    flexDirection: 'row',
-    gap: 6,
-    marginBottom: 4,
-    borderBottomWidth: 1,
-    borderBottomColor: '#015663',
   },
 
   form: {

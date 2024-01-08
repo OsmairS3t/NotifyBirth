@@ -1,27 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, Button, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
+import uuid from 'react-native-uuid'
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
 
 import Header from '../../component/header';
 import { styles } from '../../style/styles';
 import { INiverProps } from '../../utils/interface';
 
 const schema = z.object({
-  equipe: z.string().min(2, {message: 'É necessário informar pelo menos 2 caracteres'}),
+  grupo: z.string().min(2, {message: 'É necessário informar pelo menos 2 caracteres'}),
   nome: z.string().min(2, {message: 'É necessário informar pelo menos 2 caracteres'}),
   datanas: z.string(),
   telefone: z.string(),
 })
 
 export default function Cadastro() {
-  const {control, register, handleSubmit, reset, formState: { errors }} = useForm<INiverProps>({
+  const { getItem, setItem } = useAsyncStorage('@notifybirth:contacts')
+  const {control, handleSubmit, reset, formState: { errors }} = useForm<INiverProps>({
     resolver: zodResolver(schema)
   })
 
-  function handleSubmitForm(data: INiverProps) {
-    console.log(data)
+  async function handleSubmitForm(data: INiverProps) {
+    const newData = {
+      id: uuid.v4(),
+      grupo: data.grupo,
+      nome: data.nome,
+      datanas: data.datanas,
+      telefone: data.telefone
+    }
+    try {
+      const response = await getItem()
+      const currentData = response ? JSON.parse(response) : []
+
+      const updatedData = [...currentData, newData]
+
+      await setItem(JSON.stringify(updatedData))
+      Toast.show({
+        type: "success",
+        text1: "Cadastro efetuado com sucesso"
+      })
+    } catch (error) {
+      Toast.show({
+        type: "error",
+        text1: "Ocorreu um erro ao tentar salvar.",
+        text2: `${error}`
+      })
+    }
     reset()
   }
 
@@ -38,16 +66,16 @@ export default function Cadastro() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                placeholder="Equipe"
+                placeholder="Grupo"
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 style={styles.input}
               />
             )}
-            name="equipe"
+            name="grupo"
           />
-          {errors.equipe && <Text>This is required.</Text>}
+          {errors.grupo && <Text>This is required.</Text>}
 
           <Controller
             control={control}
@@ -78,6 +106,7 @@ export default function Cadastro() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
+                keyboardType='phone-pad'
                 style={styles.input}
               />
             )}
@@ -96,6 +125,7 @@ export default function Cadastro() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
+                keyboardType='phone-pad'
                 style={styles.input}
               />
             )}

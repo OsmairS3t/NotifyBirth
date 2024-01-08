@@ -1,6 +1,7 @@
 export interface INiverProps {
-  equipe: string,
-  nome: string,
-  datanas: string,
+  id: string
+  grupo: string
+  nome: string
+  datanas: string
   telefone: string
 }

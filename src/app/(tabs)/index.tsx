@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
+import { useCallback, useState } from 'react';
 import { Button, FlatList, Text, View, SafeAreaView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useFocusEffect } from 'expo-router/src/useFocusEffect';
 import * as Notifications from 'expo-notifications';
 import { DateBirth, ZeroLeft } from '../../utils/functions';
-import { aniversariantes } from '../../utils/database'
 import { INiverProps } from '../../utils/interface'
 import * as Linking from 'expo-linking';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import { styles } from '../../style/styles'
-import { Image } from 'expo-image';
 import Header from '../../component/header';
 
 Notifications.setNotificationHandler({
@@ -20,13 +20,22 @@ Notifications.setNotificationHandler({
 });
 
 export default function Home() {
+  const { getItem } = useAsyncStorage('@notifybirth:contacts')
   const [niverToday, setNiverToday] = useState<INiverProps>()
   const [listBirthMonth, setListBirthMonth] = useState<INiverProps[]>([])
 
-  function NextDateBirth(month: string) {
-    const myArray = aniversariantes
-    let newArray = myArray.filter(element => element.datanas.includes(`/${month}`))
+  async function NextDateBirth(month: string) {
+    const response = await getItem()
+    const data:INiverProps[] = response ? JSON.parse(response) : []
+    let newArray = data.filter(element => element.datanas.includes(`/${month}`))
     setListBirthMonth(newArray)
+
+    data.map(niver => {
+      if (DateBirth(niver.datanas)) {
+        setNiverToday(niver)
+        handleCallNotification(niver)
+      }
+    })
   }
 
   function SendWhatsApp(phoneNumber: string) {
@@ -41,17 +50,24 @@ export default function Home() {
     trigger: null,
   });
 
-  useEffect(() => {
-    aniversariantes.map(niver => {
-      if (DateBirth(niver.datanas)) {
-        setNiverToday(niver)
-        handleCallNotification(niver)
-      }
-    })
+  useFocusEffect(useCallback(() => {
     const actualMonth = new Date().getMonth() + 1
     const strActualMonth = ZeroLeft(actualMonth.toString(), 2)
     NextDateBirth(strActualMonth)
-  },[])
+  }, []))
+
+
+  // useEffect(() => {
+  //   niverList.map(niver => {
+  //     if (DateBirth(niver.datanas)) {
+  //       setNiverToday(niver)
+  //       handleCallNotification(niver)
+  //     }
+  //   })
+  //   const actualMonth = new Date().getMonth() + 1
+  //   const strActualMonth = ZeroLeft(actualMonth.toString(), 2)
+  //   NextDateBirth(strActualMonth)
+  // },[])
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -73,7 +89,7 @@ export default function Home() {
               renderItem={item => (
                 <View style={styles.listContainer}>
                   <Text style={styles.itemListTree}>{item.item.datanas}</Text>
-                  <Text style={styles.itemListOne}>{item.item.nome} ({item.item.equipe})</Text>
+                  <Text style={styles.itemListOne}>{item.item.nome} ({item.item.grupo})</Text>
                 </View>
               )}
             />
