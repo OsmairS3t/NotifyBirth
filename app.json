@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "package": "com.os3tdev.NotifyBirth"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -40,6 +41,14 @@
         }
       ],
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3cfd2a9e-2559-43e3-bf84-3a66ea742fc2"
+      }
+    }
   }
 }
