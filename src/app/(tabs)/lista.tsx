@@ -16,7 +16,14 @@ export default function Lista() {
   async function readData() {
     try {
       const response = await getItem()
-      const data = response ? JSON.parse(response) : []
+      let data = response ? JSON.parse(response) : []
+      data.sort((a:INiverProps, b:INiverProps) => {
+        if (a.nome < b.nome) {
+          return -1
+        } else {
+          return true
+        }
+      })
       setContacts(data)
     } catch (error) {
       console.log(error)      

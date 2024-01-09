@@ -14,5 +14,57 @@ export const stylesLocal = StyleSheet.create({
   titleText: {
     fontSize: 18,
     fontWeight: '500',
-  }
+  },
+
+  cadastro: {
+    marginTop: 10,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    gap: 4,
+  },
+
+  groupItem: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: 6,
+  },
+
+  itemTitleCadastro: {
+    fontWeight: '600',
+    fontSize: 20,
+  },
+
+  itemCadastro: {
+    fontSize: 18,
+  },
+
+  input: {
+    borderWidth: 1,
+    borderColor: '#e2e2e2',
+    alignItems: 'center',
+    height: 45,
+    width: 200,
+    fontSize: 18,
+    padding: 10,
+  },
+
+  btnSave: {
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 56,
+    width: '100%',
+    borderRadius: 10,
+    backgroundColor: '#015663',
+    gap: 4
+  },
+
+  textBtn: {
+    fontWeight: '600',
+    fontSize: 18,
+    color: '#ffffff',
+  },
+
 })

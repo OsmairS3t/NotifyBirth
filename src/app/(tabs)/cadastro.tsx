@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, SafeAreaView, TextInput, Button, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -39,16 +39,18 @@ export default function Cadastro() {
       const updatedData = [...currentData, newData]
 
       await setItem(JSON.stringify(updatedData))
-      Toast.show({
-        type: "success",
-        text1: "Cadastro efetuado com sucesso"
-      })
+      Alert.alert("Cadastro efetuado com sucesso")
+      // Toast.show({
+      //   type: "success",
+      //   text1: "Cadastro efetuado com sucesso"
+      // })
     } catch (error) {
-      Toast.show({
-        type: "error",
-        text1: "Ocorreu um erro ao tentar salvar.",
-        text2: `${error}`
-      })
+      Alert.alert("Ocorreu um erro ao tentar salvar: " + error)
+      // Toast.show({
+      //   type: "error",
+      //   text1: "Ocorreu um erro ao tentar salvar.",
+      //   text2: `${error}`
+      // })
     }
     reset()
   }
