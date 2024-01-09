@@ -11,8 +11,8 @@ export default function AppLayout() {
           justifyContent: 'center',
           alignItems: 'center',
          },
-        tabBarActiveTintColor: '#000000',
-        tabBarInactiveTintColor: '#525252',
+        tabBarActiveTintColor: '#ffffff',
+        tabBarInactiveTintColor: '#303030',
         tabBarInactiveBackgroundColor: '#FF9900',
         tabBarActiveBackgroundColor: '#FF9900',
         tabBarStyle: {

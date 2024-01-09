@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FF9900"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,8 +20,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#000000"
       }
     },
     "web": {
@@ -32,7 +32,7 @@
         "expo-notifications",
         {
           "icon": "./assets/birthday.png",
-          "color": "#ffffff",
+          "color": "#000000",
           "sounds": [
             "./assets/notifysound1.wav",
             "./assets/notifysound2.wav"
