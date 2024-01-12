@@ -3,16 +3,17 @@ import { Dimensions, StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     marginTop: 50,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   
   containerTab: {
     height: 'auto',
     marginTop: 50,
-    marginLeft: 22,
-    marginRight: 22,
+    marginLeft: 30,
+    marginRight: 30,
     marginBottom: 130,
   },
 
@@ -36,7 +37,24 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
   },
+  
+  btnMessage: {
+    marginTop: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
+    alignItems: 'center',
+    backgroundColor: '#FF9900',
+    height: 59,
+    borderRadius: 10,
+  },
 
+  textBtnMessage: {
+    fontSize: 20,
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  
   listContainer: {
     borderBottomWidth: 1,
     borderColor: '#FF9900',
@@ -88,10 +106,12 @@ export const styles = StyleSheet.create({
   bgnSubmit: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 56,
+    height: 55,
     width: '100%',
     borderRadius: 10,
-    backgroundColor: '#015663',
+    backgroundColor: '#FF9900',
+    borderWidth: 2,
+    borderColor: '#CC7C03',
   },
 
   txtBtnSubmit: {

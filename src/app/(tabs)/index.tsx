@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
-import { Button, FlatList, Text, View, SafeAreaView } from 'react-native';
+import { Button, FlatList, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect } from 'expo-router/src/useFocusEffect';
 import * as Notifications from 'expo-notifications';
@@ -14,8 +15,8 @@ import Header from '../../component/header';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
   }),
 });
 
@@ -78,7 +79,10 @@ export default function Home() {
             niverToday ? 
             <View>
               <Text style={styles.titleInformation}>Hoje é aniversário de {niverToday.nome}</Text> 
-              <Button title='Enviar Mensagem Whatsapp' onPress={() => SendWhatsApp(niverToday.telefone)} />
+              <TouchableOpacity style={styles.btnMessage}>
+                <Text style={styles.textBtnMessage}>Enviar Mensagem</Text>
+                <FontAwesome onPress={() => SendWhatsApp(niverToday.telefone)} name='whatsapp' size={30} color="#FFFFFF" />
+              </TouchableOpacity>
             </View>
           : 
           <View>
