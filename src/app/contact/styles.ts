@@ -7,12 +7,11 @@ export const stylesLocal = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    alignContent: 'center',
     gap: 4,
   },
 
   titleText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '500',
   },
 
@@ -32,7 +31,7 @@ export const stylesLocal = StyleSheet.create({
 
   itemTitleCadastro: {
     fontWeight: '600',
-    fontSize: 20,
+    fontSize: 18,
   },
 
   itemCadastro: {
@@ -57,7 +56,9 @@ export const stylesLocal = StyleSheet.create({
     height: 56,
     width: '100%',
     borderRadius: 10,
-    backgroundColor: '#015663',
+    borderWidth: 2,
+    borderColor: '#CC7C03',
+    backgroundColor: '#FF9900',
     gap: 4
   },
 

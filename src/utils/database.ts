@@ -175,7 +175,7 @@ export const aniversariantes = [
    telefone: "62"
   },
   {
-    id: "26",
+   id: "26",
    grupo: "Célula",
    nome: "Messias ",
    datanas: "30/06",

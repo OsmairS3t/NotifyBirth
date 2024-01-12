@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import uuid from 'react-native-uuid'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
+import { TextInputMask } from 'react-native-masked-text';
 
 import Header from '../../component/header';
 import { styles } from '../../style/styles';
@@ -103,7 +104,12 @@ export default function Cadastro() {
               required: true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
+              <TextInputMask
+                type='datetime'
+                options={{
+                  maskType: 'BRL',
+                  format: 'dd/mm',
+                }}
                 placeholder="dd/mm"
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -122,9 +128,14 @@ export default function Cadastro() {
               required: true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                placeholder="(62) 99999-9999"
-                onBlur={onBlur}
+              <TextInputMask
+                type='cel-phone'
+                options={{
+                  maskType: 'BRL',
+                  withDDD: true,
+                  dddMask: '99 '
+                }}
+                placeholder="62 99999-9999"
                 onChangeText={onChange}
                 value={value}
                 keyboardType='phone-pad'

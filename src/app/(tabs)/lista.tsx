@@ -30,12 +30,12 @@ export default function Lista() {
     }
   }
 
-  function remove(id: string) {
+  function remove(item: INiverProps) {
     Alert.alert(
       'Excluir',
-      'Tem certeza que deseja excluir?',  
+      'Tem certeza que deseja excluir o cadastro de '+ item.nome + ' ?',
       [
-        {text: 'Sim', onPress: () => removeContact(id) },
+        {text: 'Sim', onPress: () => removeContact(item.id) },
         {text: 'Não', onPress: () => {}, style: 'cancel'},
       ],
       { cancelable: false }
@@ -59,24 +59,31 @@ export default function Lista() {
       <Header />
       
       <View style={styles.containerTab}>
-        <Text style={styles.titleInformation}>Listagem:</Text>
-        <FlatList 
-          data={contacts}
-          renderItem={item => (
-            <View style={styles.itemList}>
-              <Link href={"/contact/" + item.item.id} asChild>
-                <Text style={styles.itemListOne}>{item.item.nome} ({item.item.grupo})</Text>
-              </Link>
-                <Text style={styles.itemListTwo}>{item.item.datanas}</Text>
-              <TouchableOpacity
-                style={styles.itemListTree}
-                onPress={() => {remove(item.item.id)}}
-              >
-                <Feather name='trash-2' size={24} />
-              </TouchableOpacity>
-            </View>
-          )}
-        />
+        {
+        contacts.length === 0 ?
+        <Text style={styles.titleInformation}>Não há contatos cadastrados, para cadastrar vá ao rodapé e entre no novo cadastro.</Text>
+        :
+        <>
+          <Text style={styles.titleInformation}>Listagem:</Text>
+          <FlatList 
+            data={contacts}
+            renderItem={item => (
+              <View style={styles.itemList}>
+                <Link href={"/contact/" + item.item.id} asChild>
+                  <Text style={styles.itemListOne}>{item.item.nome} ({item.item.grupo})</Text>
+                </Link>
+                  <Text style={styles.itemListTwo}>{item.item.datanas}</Text>
+                <TouchableOpacity
+                  style={styles.itemListTree}
+                  onPress={() => {remove(item.item)}}
+                >
+                  <Feather name='trash-2' size={24} />
+                </TouchableOpacity>
+              </View>
+            )}
+          />
+        </>
+        }
       </View>
     </SafeAreaView>
   )

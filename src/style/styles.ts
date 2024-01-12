@@ -36,16 +36,32 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
     fontWeight: "500",
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   
-  btnMessage: {
-    marginTop: 40,
+  listMessage: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 6,
+    gap: 4,
+    width: Dimensions.get('screen').width - 60,
+    backgroundColor: '#e6e6e6',
+  },
+
+  textMessage: {
+    fontSize: 18,
+    fontWeight: '500',
+  },
+
+  btnMessage: {
+    flexDirection: 'column',
     justifyContent: 'center',
-    gap: 20,
     alignItems: 'center',
     backgroundColor: '#FF9900',
-    height: 59,
+    height: 45,
+    width: 45,
     borderRadius: 10,
   },
 

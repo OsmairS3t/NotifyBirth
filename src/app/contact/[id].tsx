@@ -3,6 +3,7 @@ import { SafeAreaView, Text, View, TextInput, TouchableOpacity, Alert } from 're
 import { Link, useGlobalSearchParams } from "expo-router";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { Feather } from "@expo/vector-icons";
+import { TextInputMask } from 'react-native-masked-text';
 
 import { INiverProps } from "../../utils/interface";
 import Header from "../../component/header";
@@ -70,7 +71,12 @@ export default function Update() {
           </View>
           <View style={stylesLocal.groupItem}>
             <Text style={stylesLocal.itemTitleCadastro}>Aniversário:</Text>
-            <TextInput 
+            <TextInputMask
+              type="datetime" 
+              options={{
+                maskType: 'BRL',
+                format: 'dd/mm',
+              }}
               keyboardType="phone-pad"
               style={stylesLocal.input}
               onChangeText={value => setDataNas(value)}
@@ -79,7 +85,13 @@ export default function Update() {
           </View>
           <View style={stylesLocal.groupItem}>
             <Text style={stylesLocal.itemTitleCadastro}>Telefone:</Text>
-            <TextInput 
+            <TextInputMask 
+                type='cel-phone'
+                options={{
+                  maskType: 'BRL',
+                  withDDD: true,
+                  dddMask: '99 '
+                }}
               keyboardType="phone-pad"
               style={stylesLocal.input}
               onChangeText={value => setTelefone(value)}
