@@ -46,6 +46,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 6,
     gap: 4,
+    borderRadius: 10,
     width: Dimensions.get('screen').width - 60,
     backgroundColor: '#e6e6e6',
   },
@@ -53,6 +54,7 @@ export const styles = StyleSheet.create({
   textMessage: {
     fontSize: 18,
     fontWeight: '500',
+    paddingLeft: 10,
   },
 
   btnMessage: {
