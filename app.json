@@ -3,7 +3,7 @@
     "name": "NotifyBirth",
     "scheme": "your-app-scheme",
     "slug": "NotifyBirth",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -49,6 +49,12 @@
       "eas": {
         "projectId": "3cfd2a9e-2559-43e3-bf84-3a66ea742fc2"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/3cfd2a9e-2559-43e3-bf84-3a66ea742fc2"
     }
   }
 }

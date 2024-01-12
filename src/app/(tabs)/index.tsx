@@ -40,9 +40,9 @@ export default function Home() {
           datanas: niver.datanas,
           telefone: niver.telefone
         }
+        setNiverToday([...niverToday, data])
       }
-      setNiverToday([...data])
-      handleCallNotification("Hoje tem aniversariante!")
+      // handleCallNotification("Hoje tem aniversariante!")
     })
   }
 
@@ -62,6 +62,10 @@ export default function Home() {
     const actualMonth = new Date().getMonth() + 1
     const strActualMonth = ZeroLeft(actualMonth.toString(), 2)
     NextDateBirth(strActualMonth)
+    console.log(niverToday.length)
+    if (niverToday.length > 0) {
+      handleCallNotification("Hoje tem aniversariante!")
+    }
   }, []))
 
   return (
