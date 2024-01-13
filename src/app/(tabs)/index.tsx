@@ -30,7 +30,7 @@ export default function Home() {
     const data:INiverProps[] = response ? JSON.parse(response) : []
     let newArray = data.filter(element => element.datanas.includes(`/${month}`))
     setListBirthMonth(newArray)
-
+    let dataComplete: INiverProps[] = []
     data.map(niver => {
       if (DateBirth(niver.datanas)) {
         const data = {
@@ -40,10 +40,11 @@ export default function Home() {
           datanas: niver.datanas,
           telefone: niver.telefone
         }
-        setNiverToday([...niverToday, data])
+        dataComplete = [...dataComplete, data]
       }
-      // handleCallNotification("Hoje tem aniversariante!")
     })
+    // handleCallNotification("Hoje tem aniversariante!")
+    setNiverToday(dataComplete)
   }
 
   function SendWhatsApp(phoneNumber: string) {
@@ -62,7 +63,6 @@ export default function Home() {
     const actualMonth = new Date().getMonth() + 1
     const strActualMonth = ZeroLeft(actualMonth.toString(), 2)
     NextDateBirth(strActualMonth)
-    console.log(niverToday.length)
     if (niverToday.length > 0) {
       handleCallNotification("Hoje tem aniversariante!")
     }
