@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "NotifyBirth",
-    "scheme": "your-app-scheme",
+    "scheme": "notifybirth",
     "slug": "NotifyBirth",
     "version": "1.0.2",
     "orientation": "portrait",

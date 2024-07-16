@@ -5,3 +5,6 @@ export interface INiverProps {
   datanas: string
   telefone: string
 }
+export interface IGrupos {
+  nomegrupo: string
+}

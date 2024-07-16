@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { FlatList, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { useFocusEffect } from 'expo-router/src/useFocusEffect';
+import { useFocusEffect } from 'expo-router';
 import * as Notifications from 'expo-notifications';
 import { DateBirth, ZeroLeft } from '../../utils/functions';
 import { INiverProps } from '../../utils/interface'

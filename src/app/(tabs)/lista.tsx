@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons'
 import { styles } from '../../style/styles';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import { INiverProps } from '../../utils/interface';
-import { useFocusEffect } from 'expo-router/src/useFocusEffect';
+import { useFocusEffect } from 'expo-router';
 import { Link } from 'expo-router';
 
 export default function Lista() {
