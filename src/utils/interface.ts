@@ -8,3 +8,7 @@ export interface INiverProps {
 export interface IGrupos {
   nomegrupo: string
 }
+export interface ISelectProps {
+  key: string;
+  value: string;
+}

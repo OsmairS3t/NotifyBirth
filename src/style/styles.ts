@@ -93,7 +93,7 @@ export const styles = StyleSheet.create({
   },
 
   itemListOne: {
-    width: 250,
+    width: 150,
   },
 
   itemListTwo: {
@@ -105,7 +105,6 @@ export const styles = StyleSheet.create({
   },
 
   form: {
-    flex: 1,
     marginTop: 10,
     gap: 10,
   },

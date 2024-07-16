@@ -8,6 +8,7 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import { INiverProps } from '../../utils/interface';
 import { useFocusEffect } from 'expo-router';
 import { Link } from 'expo-router';
+import { supabase } from '../../database';
 
 export default function Lista() {
   const { getItem, setItem } = useAsyncStorage('@notifybirth:contacts')
@@ -15,16 +16,20 @@ export default function Lista() {
 
   async function readData() {
     try {
-      const response = await getItem()
-      let data = response ? JSON.parse(response) : []
-      data.sort((a:INiverProps, b:INiverProps) => {
-        if (a.nome < b.nome) {
-          return -1
-        } else {
-          return true
-        }
-      })
-      setContacts(data)
+      const { data } = await supabase.from('contacts').select('*').order('nome')
+      if (data) {
+        setContacts(data)
+      }
+      // const response = await getItem()
+      // let data = response ? JSON.parse(response) : []
+      // data.sort((a:INiverProps, b:INiverProps) => {
+      //   if (a.nome < b.nome) {
+      //     return -1
+      //   } else {
+      //     return true
+      //   }
+      // })
+      // setContacts(data)
     } catch (error) {
       console.log(error)      
     }
@@ -35,19 +40,20 @@ export default function Lista() {
       'Excluir',
       'Tem certeza que deseja excluir o cadastro de '+ item.nome + ' ?',
       [
-        {text: 'Sim', onPress: () => removeContact(item.id) },
+        {text: 'Sim', onPress: () => removeContact(Number(item.id)) },
         {text: 'Não', onPress: () => {}, style: 'cancel'},
       ],
       { cancelable: false }
     )
   }
 
-  async function removeContact(id: string) {
-    const response = await getItem()
-    const previousData = response ? JSON.parse(response) : []
-    const data = previousData.filter((item: INiverProps) => item.id !== id)
-    await setItem(JSON.stringify(data))
-    setContacts(data)
+  async function removeContact(id: number) {
+    await supabase.from('contacts').delete().eq('id', id)
+    // const response = await getItem()
+    // const previousData = response ? JSON.parse(response) : []
+    // const data = previousData.filter((item: INiverProps) => item.id !== id)
+    // await setItem(JSON.stringify(data))
+    // setContacts(data)
   }
 
   useFocusEffect(useCallback(() => {
