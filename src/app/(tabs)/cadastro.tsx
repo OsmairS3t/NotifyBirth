@@ -51,11 +51,6 @@ export default function Cadastro() {
     }
     console.log(newData)
     try {
-      // quem sabe em um offline-first
-      // const response = await getItem()
-      // const currentData = response ? JSON.parse(response) : []
-      // const updatedData = [...currentData, newData]
-      // await setItem(JSON.stringify(updatedData))
       await supabase.from('contacts').insert({
         grupo: selected,
         nome: data.nome,

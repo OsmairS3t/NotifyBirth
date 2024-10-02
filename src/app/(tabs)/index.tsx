@@ -11,12 +11,13 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import { styles } from '../../style/styles'
 import Header from '../../component/header';
+import { supabase } from '../../database';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
-    shouldSetBadge: true,
+    shouldSetBadge: false,
   }),
 });
 
@@ -26,25 +27,43 @@ export default function Home() {
   const [listBirthMonth, setListBirthMonth] = useState<INiverProps[]>([])
 
   async function NextDateBirth(month: string) {
-    const response = await getItem()
-    const data:INiverProps[] = response ? JSON.parse(response) : []
-    let newArray = data.filter(element => element.datanas.includes(`/${month}`))
-    setListBirthMonth(newArray)
-    let dataComplete: INiverProps[] = []
-    data.map(niver => {
-      if (DateBirth(niver.datanas)) {
-        const data = {
-          id: niver.id,
-          grupo: niver.grupo,
-          nome: niver.nome,
-          datanas: niver.datanas,
-          telefone: niver.telefone
+    const dataContacts = await supabase.from('contacts').select('*')
+    if (dataContacts.data) {
+      let newArray = dataContacts.data.filter(element => element.datanas.includes(`/${month}`))
+      let dataComplete: INiverProps[] = []
+      newArray.map(niver => {
+        if (DateBirth(niver.datanas)) {
+          const data = {
+            id: niver.id,
+            grupo: niver.grupo,
+            nome: niver.nome,
+            datanas: niver.datanas,
+            telefone: niver.telefone
+          }
+          dataComplete = [...dataComplete, data]
         }
-        dataComplete = [...dataComplete, data]
-      }
-    })
+      })
+      setNiverToday(dataComplete)
+    }
+    // const response = await getItem()
+    // const data:INiverProps[] = response ? JSON.parse(response) : []
+    // let newArray = data.filter(element => element.datanas.includes(`/${month}`))
+    // setListBirthMonth(newArray)
+    // let dataComplete: INiverProps[] = []
+    // data.map(niver => {
+    //   if (DateBirth(niver.datanas)) {
+    //     const data = {
+    //       id: niver.id,
+    //       grupo: niver.grupo,
+    //       nome: niver.nome,
+    //       datanas: niver.datanas,
+    //       telefone: niver.telefone
+    //     }
+    //     dataComplete = [...dataComplete, data]
+    //   }
+    // })
     // handleCallNotification("Hoje tem aniversariante!")
-    setNiverToday(dataComplete)
+    // setNiverToday(dataComplete)
   }
 
   function SendWhatsApp(phoneNumber: string) {

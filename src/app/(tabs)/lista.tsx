@@ -2,16 +2,13 @@ import React, { useCallback, useState } from 'react';
 import { View, Text, SafeAreaView, FlatList, TouchableOpacity, Alert } from 'react-native';
 import Header from '../../component/header';
 import { Feather } from '@expo/vector-icons'
-
 import { styles } from '../../style/styles';
-import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import { INiverProps } from '../../utils/interface';
 import { useFocusEffect } from 'expo-router';
 import { Link } from 'expo-router';
 import { supabase } from '../../database';
 
 export default function Lista() {
-  const { getItem, setItem } = useAsyncStorage('@notifybirth:contacts')
   const [contacts, setContacts] = useState<INiverProps[]>([])
 
   async function readData() {
@@ -20,16 +17,6 @@ export default function Lista() {
       if (data) {
         setContacts(data)
       }
-      // const response = await getItem()
-      // let data = response ? JSON.parse(response) : []
-      // data.sort((a:INiverProps, b:INiverProps) => {
-      //   if (a.nome < b.nome) {
-      //     return -1
-      //   } else {
-      //     return true
-      //   }
-      // })
-      // setContacts(data)
     } catch (error) {
       console.log(error)      
     }
@@ -49,11 +36,7 @@ export default function Lista() {
 
   async function removeContact(id: number) {
     await supabase.from('contacts').delete().eq('id', id)
-    // const response = await getItem()
-    // const previousData = response ? JSON.parse(response) : []
-    // const data = previousData.filter((item: INiverProps) => item.id !== id)
-    // await setItem(JSON.stringify(data))
-    // setContacts(data)
+    readData()
   }
 
   useFocusEffect(useCallback(() => {
